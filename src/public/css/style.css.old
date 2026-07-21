@@ -1,0 +1,679 @@
+/* ========================================
+   MINDSET.I — COMPLETE STYLESHEET
+   Color Palette:
+   #3B2545 — Headings, titles, key sections, emphasis
+   #0F3D3E — Subheadings, buttons, highlights, links, icons
+   #F7F3EC — Backgrounds, content areas, pages, slides
+   #C9A227 — Accents, dividers, icons, quotes
+   ======================================== */
+
+/* ---------- RESET & BASE ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', 'Georgia', serif;
+    background: #F7F3EC;
+    color: #3B2545;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ---------- 3D BACKGROUND CANVAS ---------- */
+#three-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ---------- CONTAINER ---------- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- HEADER (3D Nav) ---------- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 40px;
+    background: rgba(243, 239, 234, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201, 162, 39, 0.2);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s ease;
+}
+
+header.scrolled {
+    padding: 12px 40px;
+    background: rgba(243, 239, 234, 0.98);
+    box-shadow: 0 4px 30px rgba(59, 37, 69, 0.08);
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #3B2545;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #C9A227;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #3B2545;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    font-family: 'Inter', 'Arial', sans-serif;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #C9A227;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #0F3D3E;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a.btn-nav {
+    background: #0F3D3E;
+    color: #F7F3EC;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+}
+
+nav ul li a.btn-nav::after {
+    display: none;
+}
+
+nav ul li a.btn-nav:hover {
+    background: #3B2545;
+    color: #F7F3EC;
+}
+
+/* ---------- HERO SECTION (3D) ---------- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 0 80px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 900px;
+}
+
+.hero-content .badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid #C9A227;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-family: 'Inter', 'Arial', sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #C9A227;
+    margin-bottom: 2rem;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #3B2545;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-content h1 .highlight {
+    color: #C9A227;
+    position: relative;
+}
+
+.hero-content h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: rgba(201, 162, 39, 0.25);
+    z-index: -1;
+}
+
+.hero-content .subtitle {
+    font-size: 1.4rem;
+    color: #0F3D3E;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+}
+
+.hero-content .quote {
+    font-size: 1.2rem;
+    color: #3B2545;
+    opacity: 0.7;
+    font-style: italic;
+    margin-bottom: 2.5rem;
+    border-left: 3px solid #C9A227;
+    padding-left: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 14px 40px;
+    background: #0F3D3E;
+    color: #F7F3EC;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #3B2545;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(59, 37, 69, 0.25);
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 14px 40px;
+    background: transparent;
+    color: #3B2545;
+    text-decoration: none;
+    border-radius: 50px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border: 2px solid #3B2545;
+    transition: all 0.4s ease;
+}
+
+.btn-secondary:hover {
+    background: #3B2545;
+    color: #F7F3EC;
+    transform: translateY(-3px);
+}
+
+/* ---------- 3D SCROLL INDICATOR ---------- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0F3D3E;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+/* ---------- SECTION COMMON ---------- */
+section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 3rem;
+    color: #3B2545;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.section-header .section-sub {
+    font-size: 1.1rem;
+    color: #0F3D3E;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+.section-divider {
+    width: 60px;
+    height: 3px;
+    background: #C9A227;
+    margin: 1.5rem auto 0;
+}
+
+/* ---------- PHILOSOPHY SECTION (3D Cards) ---------- */
+.philosophy {
+    background: #F7F3EC;
+}
+
+.pillars-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    perspective: 1000px;
+}
+
+.pillar-card {
+    background: white;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(59, 37, 69, 0.08);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+    cursor: default;
+}
+
+.pillar-card:hover {
+    transform: rotateY(6deg) rotateX(-4deg) translateY(-8px);
+    box-shadow: 0 20px 60px rgba(59, 37, 69, 0.15);
+}
+
+.pillar-card .pillar-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #C9A227;
+    font-family: 'Inter', 'Arial', sans-serif;
+    opacity: 0.6;
+}
+
+.pillar-card h3 {
+    font-size: 1.1rem;
+    color: #3B2545;
+    margin: 0.5rem 0 0.3rem;
+}
+
+.pillar-card p {
+    font-size: 0.85rem;
+    color: #3B2545;
+    opacity: 0.7;
+    font-family: 'Inter', 'Arial', sans-serif;
+    line-height: 1.5;
+}
+
+/* ---------- SERVICES SECTION (Image-based Cards) ---------- */
+.services {
+    background: rgba(243, 239, 234, 0.5);
+}
+
+.services-grid-3d {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    perspective: 1000px;
+}
+
+.service-card-3d {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(59, 37, 69, 0.08);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+}
+
+.service-card-3d:hover {
+    transform: rotateY(4deg) rotateX(-3deg) translateY(-10px);
+    box-shadow: 0 30px 70px rgba(59, 37, 69, 0.18);
+}
+
+.service-card-3d .service-image {
+    width: 100%;
+    height: 220px;
+    background: #3B2545;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.service-card-3d .service-image .service-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(15, 61, 62, 0.85);
+    color: #F7F3EC;
+    padding: 4px 14px;
+    border-radius: 30px;
+    font-size: 0.7rem;
+    font-family: 'Inter', 'Arial', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+}
+
+.service-card-3d .service-body {
+    padding: 1.8rem 2rem 2rem;
+}
+
+.service-card-3d .service-body h3 {
+    font-size: 1.3rem;
+    color: #3B2545;
+    margin-bottom: 0.3rem;
+}
+
+.service-card-3d .service-body .service-price {
+    font-family: 'Inter', 'Arial', sans-serif;
+    color: #C9A227;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.service-card-3d .service-body p {
+    font-family: 'Inter', 'Arial', sans-serif;
+    color: #3B2545;
+    opacity: 0.7;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.service-card-3d .service-body .btn-service {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 8px 24px;
+    background: transparent;
+    color: #0F3D3E;
+    border: 1px solid #0F3D3E;
+    border-radius: 30px;
+    text-decoration: none;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.service-card-3d .service-body .btn-service:hover {
+    background: #0F3D3E;
+    color: #F7F3EC;
+}
+
+/* Service Image Placeholders — Replace with real images */
+.service-image.schools {
+    background-image: url('/images/students-session.jpg');
+    background-color: #3B2545;
+}
+
+.service-image.prefects {
+    background-image: url('/images/prefects-training.jpg');
+    background-color: #0F3D3E;
+}
+
+.service-image.teachers {
+    background-image: url('/images/teachers-wellness.jpg');
+    background-color: #C9A227;
+}
+
+.service-image.corporate {
+    background-image: url('/images/corporate-team.jpg');
+    background-color: #3B2545;
+}
+
+.service-image.acceleration {
+    background-image: url('/images/acceleration.jpg');
+    background-color: #112d2e;
+}
+
+/* ---------- 3D FLOATING QUOTE ---------- */
+.floating-quote {
+    background: #3B2545;
+    color: #F7F3EC;
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-quote .quote-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.floating-quote .quote-content blockquote {
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.floating-quote .quote-content blockquote .accent {
+    color: #C9A227;
+}
+
+.floating-quote .quote-content cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-style: normal;
+    font-family: 'Inter', 'Arial', sans-serif;
+    opacity: 0.6;
+}
+
+/* ---------- TESTIMONIALS ---------- */
+.testimonials {
+    background: #F7F3EC;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    border-left: 4px solid #C9A227;
+    box-shadow: 0 4px 20px rgba(59, 37, 69, 0.06);
+}
+
+.testimonial-card p {
+    font-family: 'Inter', 'Arial', sans-serif;
+    color: #3B2545;
+    opacity: 0.8;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.testimonial-card .author {
+    margin-top: 1rem;
+    font-weight: 700;
+    color: #0F3D3E;
+}
+
+.testimonial-card .author span {
+    font-weight: 400;
+    opacity: 0.6;
+    font-size: 0.85rem;
+}
+
+/* ---------- CTA SECTION ---------- */
+.cta {
+    background: #0F3D3E;
+    color: #F7F3EC;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.cta h2 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.cta p {
+    font-family: 'Inter', 'Arial', sans-serif;
+    opacity: 0.8;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.cta .btn-primary {
+    background: #C9A227;
+    color: #F7F3EC;
+}
+
+.cta .btn-primary:hover {
+    background: #F7F3EC;
+    color: #133738;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    background: #291035;
+    color: #F7F3EC;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .footer-philosophy {
+    font-style: italic;
+    color: #C9A227;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+footer .footer-copy {
+    font-family: 'Inter', 'Arial', sans-serif;
+    opacity: 0.5;
+    font-size: 0.85rem;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+    header {
+        padding: 16px 20px;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    nav ul {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+    
+    nav ul li a.btn-nav {
+        padding: 6px 16px;
+        font-size: 0.75rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.6rem;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .services-grid-3d {
+        grid-template-columns: 1fr;
+    }
+    
+    .pillars-grid-3d {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .floating-quote .quote-content blockquote {
+        font-size: 1.4rem;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pillars-grid-3d {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+}

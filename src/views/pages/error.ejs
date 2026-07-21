@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #2a1540 0%, var(--violet) 50%, #1a0a2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(24, 185, 216, 0.08) 0%, transparent 60%);
+        }
+
+        .error-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.6s var(--ease-out) 0.3s both;
+        }
+
+        .error-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--cyan);
+            stroke-width: 2;
+        }
+
+        .error-page h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            color: var(--white);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 0.5s both;
+        }
+
+        .error-page .code {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 0.6s both;
+        }
+
+        .error-page .message {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 450px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 0.8s both;
+        }
+
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 1s both;
+        }
+
+        .error-quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.4);
+            max-width: 350px;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 1.2s both;
+        }
+
+        @media (max-width: 768px) {
+            .error-page {
+                padding: 6rem 1.5rem 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main class="error-page">
+        <div class="error-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+        </div>
+
+        <h1>This Is Not the End</h1>
+        <p class="code">Error <%= code || 'Unknown' %></p>
+        
+        <p class="message">
+            <%= message || 'Something unexpected happened. But like all moments of disruption, this too carries a gift — the opportunity to begin again, more intentionally.' %>
+        </p>
+
+        <div class="error-actions">
+            <a href="javascript:history.back()" class="btn-primary">Try Again</a>
+            <a href="/" class="btn-secondary">Return Home</a>
+        </div>
+
+        <p class="error-quote">
+            "Now is the only place anything ever happens. Not the past. Not the future."
+        </p>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

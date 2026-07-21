@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <style>
+        .success-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--violet) 0%, #2a1540 50%, var(--teal) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(24, 185, 216, 0.1) 0%, transparent 60%);
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 2;
+            animation: scaleIn 0.6s var(--ease-spring) 0.3s both;
+        }
+
+        .success-icon::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid rgba(24, 185, 216, 0.3);
+            animation: pulseRing 2s ease-out infinite;
+        }
+
+        .success-icon::after {
+            content: '';
+            position: absolute;
+            inset: -16px;
+            border-radius: 50%;
+            border: 1px solid rgba(24, 185, 216, 0.15);
+            animation: pulseRing 2s ease-out 0.5s infinite;
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: var(--white);
+            stroke-width: 3;
+        }
+
+        .success-page h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 300;
+            color: var(--white);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 0.6s both;
+        }
+
+        .success-page .subtitle {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--cyan);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 0.8s both;
+        }
+
+        .success-page .message {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 1s both;
+        }
+
+        .success-details {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 2rem 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 1.2s both;
+        }
+
+        .success-details p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-details .label {
+            color: var(--cyan);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.7rem;
+        }
+
+        .success-quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 400px;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 1.4s both;
+        }
+
+        .success-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 0.8s var(--ease-out) 1.6s both;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .success-page {
+                padding: 6rem 1.5rem 3rem;
+            }
+            
+            .success-details {
+                padding: 1.5rem;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main class="success-page">
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+        </div>
+
+        <h1>Your Enquiry Has Landed</h1>
+        <p class="subtitle">Thank you, <%= name %></p>
+        
+        <p class="message">
+            We have received your interest in <strong style="color: var(--cyan);"><%= service %></strong>. 
+            One of our team will reach out within 24 hours to begin the conversation.
+        </p>
+
+        <div class="success-details">
+            <p><span class="label">What happens next</span></p>
+            <p>• We review your enquiry within 24 hours</p>
+            <p>• A Mindset.i representative will contact you</p>
+            <p>• We schedule a brief discovery call</p>
+            <p>• Together, we design the session that serves you best</p>
+        </div>
+
+        <p class="success-quote">
+            "You cannot pour from an empty cup — but yours was never empty to begin with."
+        </p>
+
+        <div class="success-actions">
+            <a href="/services" class="btn-primary">Explore More Services</a>
+            <a href="/" class="btn-secondary">Return Home</a>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

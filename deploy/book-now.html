@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://localhost:3000/book-now -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Book a Session — Mindset.i</title>
+
+<!-- Google Fonts -->
+<link href="./book-now_files/css2" rel="stylesheet">
+
+<link rel="stylesheet" href="./book-now_files/style.css">
+</head>
+<body>
+    <header>
+    <a href="http://localhost:3000/" class="logo">
+        <img src="./book-now_files/logo.png" alt="Mindset.i" class="logo-img">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="http://localhost:3000/">Home</a></li>
+            <li><a href="http://localhost:3000/about">About</a></li>
+            <li><a href="http://localhost:3000/services">Services</a></li>
+            <li><a href="http://localhost:3000/podcast">Podcast</a></li>
+            <li><a href="http://localhost:3000/book-now" class="btn-nav">Book Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Begin the Conversation</h1>
+                <p>Tell us where you are, and we'll meet you there.</p>
+            </div>
+        </section>
+
+        <section class="booking-container">
+            <div class="booking-form-wrapper">
+                <form class="booking-form" action="http://localhost:3000/book-now" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder=" " required="">
+                        <label for="name">Full Name</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder=" " required="">
+                        <label for="email">Email Address</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder=" ">
+                        <label for="phone">Phone Number</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="organization" name="organization" placeholder=" ">
+                        <label for="organization">School / Organisation</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="service" name="service" required="">
+                            <option value="" disabled="" selected=""></option>
+                            <option value="awakening">The Awakening — Schools</option>
+                            <option value="journey">The Journey — Annual Programme</option>
+                            <option value="prefects">The Prefect's Path — Leadership</option>
+                            <option value="teachers">The Full Cup — Teacher Wellness</option>
+                            <option value="corporate">The Bond — Corporate</option>
+                            <option value="complete-bond">The Complete Bond — Full Package</option>
+                            <option value="emergence">The Emergence — Pupils</option>
+                            <option value="threshold">The Threshold — Leavers</option>
+                            <option value="forge">The Forge — Graduates</option>
+                            <option value="pulse">Pulse Points — Evening</option>
+                            <option value="poet">The Poet — Private Event</option>
+                        </select>
+                        <label for="service">Service Interested In</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
+                        <label for="message">What brings you to Mindset.i?</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Send Enquiry →
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+    <div class="container">
+        <div class="footer-logo">
+            <img src="./book-now_files/logo.png" alt="Mindset.i" class="footer-logo-img">
+        </div>
+        <p>© 2026 Mindset.i. All rights reserved.</p>
+        <p class="philosophy">"All that you are looking for is at the place you are looking from."</p>
+    </div>
+</footer>
+
+</body></html>

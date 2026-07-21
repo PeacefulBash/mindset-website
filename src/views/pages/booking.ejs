@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Begin the Conversation</h1>
+                <p>Tell us where you are, and we'll meet you there.</p>
+            </div>
+        </section>
+
+        <section class="booking-container">
+            <div class="booking-form-wrapper">
+                <form class="booking-form" action="/book-now" method="POST">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name">Full Name</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder=" " required>
+                        <label for="email">Email Address</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="phone" name="phone" placeholder=" ">
+                        <label for="phone">Phone Number</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="organization" name="organization" placeholder=" ">
+                        <label for="organization">School / Organisation</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <select id="service" name="service" required>
+                            <option value="" disabled selected></option>
+                            <option value="awakening">The Awakening — Schools</option>
+                            <option value="journey">The Journey — Annual Programme</option>
+                            <option value="prefects">The Prefect's Path — Leadership</option>
+                            <option value="teachers">The Full Cup — Teacher Wellness</option>
+                            <option value="corporate">The Bond — Corporate</option>
+                            <option value="complete-bond">The Complete Bond — Full Package</option>
+                            <option value="emergence">The Emergence — Pupils</option>
+                            <option value="threshold">The Threshold — Leavers</option>
+                            <option value="forge">The Forge — Graduates</option>
+                            <option value="pulse">Pulse Points — Evening</option>
+                            <option value="poet">The Poet — Private Event</option>
+                        </select>
+                        <label for="service">Service Interested In</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
+                        <label for="message">What brings you to Mindset.i?</label>
+                        <div class="bar"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Send Enquiry →
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>

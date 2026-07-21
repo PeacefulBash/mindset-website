@@ -1,0 +1,158 @@
+// ========================================
+// MINDSET.I — 3D BACKGROUND (Three.js)
+// Floating geometric shapes with philosophy
+// ========================================
+
+// Check if Three.js is loaded
+if (typeof THREE !== 'undefined') {
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xF7F3EC);
+
+    // Camera
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 30;
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true
+    });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0xF7F3EC, 0);
+
+    const container = document.getElementById('three-bg');
+    if (container) {
+        container.appendChild(renderer.domElement);
+    }
+
+    // ===== SHAPES =====
+    const shapes = [];
+    const colors = [
+        0x3B2545, // Dark purple
+        0x0F3D3E, // Dark teal
+        0xC9A227, // Gold
+        0x3B2545, // Dark purple
+        0x0F3D3E, // Dark teal
+    ];
+
+    // Geometry types
+    const geometries = [
+        new THREE.TorusKnotGeometry(0.8, 0.3, 64, 8),
+        new THREE.OctahedronGeometry(0.7),
+        new THREE.DodecahedronGeometry(0.7),
+        new THREE.TorusGeometry(0.7, 0.3, 16, 32),
+        new THREE.IcosahedronGeometry(0.7),
+        new THREE.BoxGeometry(0.9, 0.9, 0.9),
+    ];
+
+    // Create floating shapes
+    for (let i = 0; i < 45; i++) {
+        const geo = geometries[Math.floor(Math.random() * geometries.length)];
+        const mat = new THREE.MeshStandardMaterial({
+            color: colors[Math.floor(Math.random() * colors.length)],
+            wireframe: false,
+            transparent: true,
+            opacity: 0.12 + Math.random() * 0.15,
+            roughness: 0.4,
+            metalness: 0.2,
+            emissive: new THREE.Color(0xC9A227),
+            emissiveIntensity: 0.03,
+        });
+
+        const mesh = new THREE.Mesh(geo, mat);
+
+        // Random positions spread across view
+        mesh.position.x = (Math.random() - 0.5) * 60;
+        mesh.position.y = (Math.random() - 0.5) * 40;
+        mesh.position.z = (Math.random() - 0.5) * 40 - 10;
+
+        // Random rotations
+        mesh.rotation.x = Math.random() * Math.PI * 2;
+        mesh.rotation.y = Math.random() * Math.PI * 2;
+
+        // Store animation data
+        mesh.userData = {
+            rotSpeedX: (Math.random() - 0.5) * 0.02,
+            rotSpeedY: (Math.random() - 0.5) * 0.02,
+            rotSpeedZ: (Math.random() - 0.5) * 0.02,
+            floatSpeed: 0.005 + Math.random() * 0.015,
+            floatAmplitude: 0.3 + Math.random() * 0.8,
+            initialY: mesh.position.y,
+            initialX: mesh.position.x,
+            driftSpeed: (Math.random() - 0.5) * 0.004,
+        };
+
+        scene.add(mesh);
+        shapes.push(mesh);
+    }
+
+    // ===== LIGHTING =====
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    scene.add(ambientLight);
+
+    const light1 = new THREE.DirectionalLight(0x3B2545, 0.5);
+    light1.position.set(10, 20, 20);
+    scene.add(light1);
+
+    const light2 = new THREE.DirectionalLight(0xC9A227, 0.3);
+    light2.position.set(-20, 10, -20);
+    scene.add(light2);
+
+    const pointLight = new THREE.PointLight(0xC9A227, 0.2, 50);
+    pointLight.position.set(0, 0, 20);
+    scene.add(pointLight);
+
+    // ===== ANIMATION =====
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    });
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        const time = Date.now() * 0.001;
+
+        shapes.forEach((mesh, i) => {
+            // Rotation
+            mesh.rotation.x += mesh.userData.rotSpeedX;
+            mesh.rotation.y += mesh.userData.rotSpeedY;
+            mesh.rotation.z += mesh.userData.rotSpeedZ;
+
+            // Floating
+            mesh.position.y = mesh.userData.initialY +
+                Math.sin(time * mesh.userData.floatSpeed + i) * mesh.userData.floatAmplitude;
+
+            // Drift horizontally
+            mesh.position.x += mesh.userData.driftSpeed;
+            if (mesh.position.x > 35) mesh.position.x = -35;
+            if (mesh.position.x < -35) mesh.position.x = 35;
+
+            // Subtle follow mouse
+            mesh.rotation.x += mouseY * 0.001;
+            mesh.rotation.y += mouseX * 0.001;
+        });
+
+        renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // ===== RESIZE =====
+    window.addEventListener('resize', () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+    });
+
+} else {
+    console.warn('Three.js not loaded. 3D background disabled.');
+}

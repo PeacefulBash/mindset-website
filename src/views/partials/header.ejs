@@ -1,0 +1,25 @@
+<header>
+    <a href="/" class="logo">
+        <img src="/images/logo.png" alt="Mindset.i" class="logo-img">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/podcast">Podcast</a></li>
+            <li><a href="/book-now" class="btn-nav">Book Now</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+</script>
